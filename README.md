@@ -1,1 +1,26 @@
-# funtimes
+funtimes
+========
+Funtimes contains a class FindSubsets that finds all subsets in an array of given numbers that add up to a desired sum.
+Currently the calculate method only handles sets with non-zero and non-negative integers
+
+# Tests
+Can use the following command to run all tests.
+```
+rake test
+```
+There are currently three different test cases
+## Given Examples
+Examples that were given.
+### First example
+total_combinations = calculate_combinations(input=[5, 5, 15, 10], target_sum=15)
+[2]           => input[2] = 15
+[0, 3]       => input[0] = 5, input[3] = 10, sum = 15
+[1, 3]       => input[1] = 5, input[3] = 10, sum = 15
+### Second example
+total_combinations = calculate_combinations(input=[1, 2, 3, 4], target_sum=6)
+[0, 1, 2]
+[1, 3]
+## Extra Examples
+Examples that I made up to test the functionality of the method.
+## Random Examples
+The simple_calculate can reliably get the correct list of subsets even if it isn't very efficient. Utilizing this we can randomly generate several inputs and get a correct expected output for each one. We can then compare this output to the calculate function to test that it works correctly.
