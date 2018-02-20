@@ -59,7 +59,7 @@ class FindSubsets
                 @sum_cache[j.to_s][i.to_s] = nil
             end
         end
-        @sum_cache['0']['0'] = []
+        @sum_cache['0']['0'] = [[]]
 
         for i in 1..@num_list.size do
             # Iterate through all sums leading up to the desired sum
