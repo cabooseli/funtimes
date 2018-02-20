@@ -50,12 +50,24 @@ class FindSubsets
         end
     end
 
+
+    def _find_range
+        # Returns the min and max values that are possible
+        # To find the minimum possible sum add all negative values
+        min = @num_list.select { |x| x < 0 }.sum
+        # To find the maximum possible sum add all positive values
+        max = @num_list.select { |x| x > 0 }.sum
+
+        return min, max
+    end
+
     def calculate
+        min, max = _find_range
         # Taking a bottom up approach
         # Start from 0
         for j in 0..@num_list.size do
             @sum_cache[j.to_s] = {}
-            for i in 0..@desired_sum
+            for i in min..max
                 @sum_cache[j.to_s][i.to_s] = nil
             end
         end
@@ -65,7 +77,7 @@ class FindSubsets
             # Iterate through all sums leading up to the desired sum
             @logger.debug("----------------------------\n")
             @logger.debug("Current number is #{@num_list[i-1]}\n")
-            for current_sum in 0..@desired_sum do
+            for current_sum in min..max do
                 # Grab any sets that were set in the previous iteration
                 # These represent sums that have already been found we just need to persist them
                 @sum_cache[i.to_s][current_sum.to_s] = @sum_cache[(i-1).to_s][current_sum.to_s]
@@ -76,7 +88,7 @@ class FindSubsets
                 # We just need to check if there is a set for current_sum - current_number
                 current_number = @num_list[i-1]
                 difference = current_sum - current_number
-                unless difference < 0
+                unless difference < min || difference > max
                     @logger.debug("Looking for set for difference #{difference.to_s} from previous iteration")
                     previous_sum_set = @sum_cache[(i-1).to_s][difference.to_s]
                     unless previous_sum_set.nil?
