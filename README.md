@@ -1,5 +1,6 @@
 funtimes
 ========
+[![Build Status](https://travis-ci.org/cabooseli/funtimes.svg?branch=master)](https://travis-ci.org/cabooseli/funtimes)
 Contains two methods:
 * simple_calculate: A brute force solution to the problem that attempts every combination. More than sufficient for small array sizes but doesn't scale very well.
 * calculate: An approach using dynamic programming.
